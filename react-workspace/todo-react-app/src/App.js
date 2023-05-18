@@ -25,12 +25,28 @@ function App() {
     console.log(items);
   };
 
+  const deleteItem = (item) => {
+    // 삭제할 아이템을 찾는다.
+    const newItems = items.filter((e) => e.id !== item.id);
+    // 삭제할 아이템을 제외한 아이템을 다시 배열에 저장한다.
+    setItems([...newItems]);
+  };
+
+  const editItem = () => {
+    setItems([...items]);
+  };
+
   let todoItems =
     items.length > 0 &&
     items.map((item) => (
       <Paper style={{ margin: 16 }}>
         <List>
-          <Todo item={item} key={item.id} />
+          <Todo
+            item={item}
+            key={item.id}
+            editItem={editItem}
+            deleteItem={deleteItem}
+          />
         </List>
       </Paper>
     ));
