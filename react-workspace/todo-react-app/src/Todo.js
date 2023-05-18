@@ -37,8 +37,9 @@ function Todo(props) {
 
   // turnOnReadOnly 함수 작성
   const trunOnReadOnly = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && readOnly === false) {
       setReadOnly(true);
+      editItem(item);
     }
   };
 
@@ -48,13 +49,14 @@ function Todo(props) {
   };
 
   const editEventHandler = (e) => {
-    item.title = e.target.value;
-    editItem();
+    // item.title = e.target.value;
+    // editItem();
+    setItem({ ...item, title: e.target.value });
   };
 
   const checkboxEventHandler = (e) => {
     item.done = e.target.checked;
-    editItem();
+    editItem(item);
   };
 
   return (
