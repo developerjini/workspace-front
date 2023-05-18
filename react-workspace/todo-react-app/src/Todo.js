@@ -52,13 +52,18 @@ function Todo(props) {
     editItem();
   };
 
+  const checkboxEventHandler = (e) => {
+    item.done = e.target.checked;
+    editItem();
+  };
+
   return (
     // <div className="Todo">
     //   <input type="checkbox" id={item.id} name={item.id} checked={item.done} />
     //   <label id={item.id}>{item.title}</label>
     // </div>
     <ListItem key={item.id}>
-      <Checkbox checked={item.done} />
+      <Checkbox checked={item.done} onChange={checkboxEventHandler} />
       <ListItemText>
         <InputBase
           inputProps={{ "aria-label": "naked", readOnly: readOnly }}
