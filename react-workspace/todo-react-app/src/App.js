@@ -2,7 +2,7 @@ import "@mui/material";
 import "./App.css";
 import Todo from "./Todo";
 import { useState } from "react";
-import { Container, List, Paper } from "@mui/material";
+import { Container, List, Paper, responsiveFontSizes } from "@mui/material";
 import AddTodo from "./AddTodo";
 
 function App() {
@@ -36,6 +36,19 @@ function App() {
     setItems([...items]);
   };
 
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  };
+
+  fetch("http://localhost:8080/todo", requestOptions)
+    .then((respnse) => Response.json())
+    .then(
+      (response) => {
+        setItems(response.data);
+      },
+      (error) => {}
+    );
   let todoItems = items.length > 0 && (
     <Paper style={{ margin: 16 }}>
       <List>
