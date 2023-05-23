@@ -9,8 +9,8 @@ import { call } from "./service/ApiService";
 function App() {
   // const [item, setItem] = useState({ id: 1, done: true, title: "제목" });
   const [items, setItems] = useState([
-    { id: 1, done: true, title: "제목1" },
-    { id: 2, done: false, title: "제목2" },
+    { id: "1", done: true, title: "제목1" },
+    { id: "2", done: false, title: "제목2" },
   ]);
 
   let str = [];
