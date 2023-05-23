@@ -73,7 +73,6 @@ function App() {
             deleteItem={deleteItem}
           />
         ))}
-        ;
       </List>
     </Paper>
   );
