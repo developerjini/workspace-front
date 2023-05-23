@@ -52,3 +52,9 @@ export function signin(userDTO) {
     }
   });
 }
+
+export function signout() {
+  localStorage.setItem("ACCESS_TOKEN", null);
+  // localStorage.removeItem("ACCESS_TOKEN");
+  window.location.href = "/login";
+}
