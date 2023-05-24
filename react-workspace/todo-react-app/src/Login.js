@@ -1,6 +1,6 @@
 import { Button, Container, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
-import { signin } from "./service/ApiService";
+import { signin, socialLogin } from "./service/ApiService";
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -11,7 +11,14 @@ const Login = () => {
     const username = data.get("username");
     const password = data.get("password");
     // ApiService의 signin 메서드를 사용해 로그인.
-    signin({ username: username, password: password });
+    signin({ username, password }).then((resp) => {
+      console.log(resp);
+      console.log(resp.status);
+    });
+  };
+
+  const handleSocialLogin = (provider) => {
+    socialLogin(provider);
   };
 
   return (
@@ -53,6 +60,26 @@ const Login = () => {
           <Grid item xs={12}>
             <Button type="submit" fullWidth variant="contained" color="primary">
               로그인
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              onClick={() => handleSocialLogin("github")}
+              fullWidth
+              variant="contained"
+              style={{ backgroundColor: "#000" }}
+            >
+              깃허브로 로그인하기
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              onClick={() => handleSocialLogin("google")}
+              fullWidth
+              variant="contained"
+              style={{ backgroundColor: "#4285f4" }}
+            >
+              구글로 로그인
             </Button>
           </Grid>
           <Grid item>
